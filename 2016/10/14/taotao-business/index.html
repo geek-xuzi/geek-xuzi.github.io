@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://geek-xuzi.github.io/img/favicon.ico">
+
+    <title>
+        
+          淘淘电商网 - 徐政的博客 | Xuen&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://geek-xuzi.github.iohttps://geek-xuzi.github.io/2016/10/14/taotao-business/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https:/geek-xuzi.github.io/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https:/geek-xuzi.github.io/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="https:/geek-xuzi.github.io/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://geek-xuzi.github.io/">Xuen&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://geek-xuzi.github.io/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="https://geek-xuzi.github.io/archives/">归档</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="https://geek-xuzi.github.io/about/">关于</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="https://geek-xuzi.github.io/tags/">标签</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://geek-xuzi.github.iohttps://geek-xuzi.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/content-bg1.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="https://geek-xuzi.github.io/tags/#后端" title="后端">后端</a>
+                        
+                          <a class="tag" href="https://geek-xuzi.github.io/tags/#Java" title="Java">Java</a>
+                        
+                          <a class="tag" href="https://geek-xuzi.github.io/tags/#Redis" title="Redis">Redis</a>
+                        
+                          <a class="tag" href="https://geek-xuzi.github.io/tags/#Nginx" title="Nginx">Nginx</a>
+                        
+                          <a class="tag" href="https://geek-xuzi.github.io/tags/#Solr" title="Solr">Solr</a>
+                        
+                    </div>
+                    <h1>淘淘电商网</h1>
+                    <h2 class="subheading">淘淘电商网项目详细说明</h2>
+                    <span class="meta">
+                        Posted by XuZheng on
+                        2016-10-14
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>一款类综合性的B2C平台，类似于京东商城、天猫商城。</p>
+</blockquote>
+<h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>淘淘网上商城是一个综合性的B2C平台，类似京东商城、天猫商城。会员可以在商城浏览商品、下订单，以及参加各种动。管理员、运营可以在平台后台管理系统中管理商品、订单、会员等。客服可以在后台管理系统中处理用户的询问以及投诉。</p>
+<h3 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h3><ul>
+<li>IntelliJ IDEA</li>
+<li>mysql</li>
+<li>Tomcat</li>
+<li>Nginx</li>
+<li>Centos</li>
+</ul>
+<h3 id="使用框架"><a href="#使用框架" class="headerlink" title="使用框架"></a>使用框架</h3><p>  <strong>Spring＋SptingMVC＋Mybatis</strong></p>
+<h3 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h3><ul>
+<li><p>采用分布式架构设计</p>
+<p>  <img src="http://olpuebn54.bkt.clouddn.com/jiagou.png" alt=""></p>
+<ul>
+<li>分布式架构：把系统按照模块拆分成多个子系统。</li>
+<li>优点：<ol>
+<li>把模块拆分，使用接口通信，降低模块之间的耦合度。</li>
+<li>把项目拆分成若干个子项目，不同的团队负责不同的子项目。</li>
+<li>增加功能时只需要再增加一个子项目，调用其他系统的接口就可以。</li>
+<li>可以灵活的进行分布式部署。</li>
+</ol>
+</li>
+<li>缺点：系统之间交互需要使用远程通信，接口开发增加工作量。</li>
+</ul>
+</li>
+</ul>
+<h3 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h3><ul>
+<li><p>使用Maven来管理项目的依赖和生命周期</p>
+<ul>
+<li>pom文件<pre><code>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;com.taotao&lt;/groupId&gt;
+  &lt;artifactId&gt;taotao-parent&lt;/artifactId&gt;
+  &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+  &lt;packaging&gt;pom&lt;/packaging&gt;
+  &lt;!-- 集中定义依赖版本号 --&gt;
+  &lt;properties&gt;
+      &lt;junit.version&gt;4.12&lt;/junit.version&gt;
+      &lt;spring.version&gt;4.1.3.RELEASE&lt;/spring.version&gt;
+      &lt;mybatis.version&gt;3.2.8&lt;/mybatis.version&gt;
+      &lt;mybatis.spring.version&gt;1.2.2&lt;/mybatis.spring.version&gt;
+      &lt;mybatis.paginator.version&gt;1.2.15&lt;/mybatis.paginator.version&gt;
+      &lt;mysql.version&gt;5.1.32&lt;/mysql.version&gt;
+      &lt;slf4j.version&gt;1.6.4&lt;/slf4j.version&gt;
+      &lt;jackson.version&gt;2.4.2&lt;/jackson.version&gt;
+      &lt;druid.version&gt;1.0.9&lt;/druid.version&gt;
+      &lt;httpclient.version&gt;4.3.5&lt;/httpclient.version&gt;
+      &lt;jstl.version&gt;1.2&lt;/jstl.version&gt;
+      &lt;servlet-api.version&gt;2.5&lt;/servlet-api.version&gt;
+      &lt;jsp-api.version&gt;2.0&lt;/jsp-api.version&gt;
+      &lt;joda-time.version&gt;2.5&lt;/joda-time.version&gt;
+      &lt;commons-lang3.version&gt;3.3.2&lt;/commons-lang3.version&gt;
+      &lt;commons-io.version&gt;1.3.2&lt;/commons-io.version&gt;
+      &lt;commons-net.version&gt;3.3&lt;/commons-net.version&gt;
+      &lt;pagehelper.version&gt;3.4.2-fix&lt;/pagehelper.version&gt;
+      &lt;jsqlparser.version&gt;0.9.1&lt;/jsqlparser.version&gt;
+      &lt;commons-fileupload.version&gt;1.3.1&lt;/commons-fileupload.version&gt;
+      &lt;jedis.version&gt;2.7.2&lt;/jedis.version&gt;
+      &lt;solrj.version&gt;4.10.3&lt;/solrj.version&gt;
+  &lt;/properties&gt;
+  &lt;dependencies&gt;
+      &lt;!-- 依赖具体定义 --&gt;
+    ...
+  &lt;/dependencies&gt;
+  &lt;build&gt;
+        &lt;finalName&gt;${project.artifactId}&lt;/finalName&gt;
+        &lt;plugins&gt;
+            &lt;!-- 资源文件拷贝插件 --&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;
+                &lt;version&gt;2.7&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;encoding&gt;UTF-8&lt;/encoding&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+            &lt;!-- java编译插件 --&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.2&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;source&gt;1.7&lt;/source&gt;
+                    &lt;target&gt;1.7&lt;/target&gt;
+                    &lt;encoding&gt;UTF-8&lt;/encoding&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+        &lt;pluginManagement&gt;
+            &lt;plugins&gt;
+                &lt;!-- 配置Tomcat插件 --&gt;
+                &lt;plugin&gt;
+                    &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt;
+                    &lt;artifactId&gt;tomcat7-maven-plugin&lt;/artifactId&gt;
+                    &lt;version&gt;2.2&lt;/version&gt;
+                &lt;/plugin&gt;
+            &lt;/plugins&gt;
+        &lt;/pluginManagement&gt;
+    &lt;/build&gt;
+&lt;/project&gt;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="Redis集群"><a href="#Redis集群" class="headerlink" title="Redis集群"></a>Redis集群</h3><ul>
+<li><p>redis-cluster架构图</p>
+<p><img src="http://olpuebn54.bkt.clouddn.com/redis_jaigou.png" alt=""></p>
+<ul>
+<li><p>(1)所有的redis节点彼此互联(PING-PONG机制),内部使用二进制协议优化传输速度和带宽.</p>
+</li>
+<li><p>(2)节点的fail是通过集群中超过半数的节点检测失效时才生效.</p>
+</li>
+<li><p>(3)客户端与redis节点直连,不需要中间proxy层.客户端不需要连接集群所有节点,连接集群中任何一个可用节点即可</p>
+</li>
+<li><p>(4)redis-cluster把所有的物理节点映射到[0-16383]slot上,cluster 负责维护node&lt;-&gt;slot&lt;-&gt;value</p>
+<blockquote>
+<p>Redis 集群中内置了 16384 个哈希槽，当需要在 Redis 集群中放置一个 key-value 时，redis 先对 key 使用 crc16 算法算出一个结果，然后把结果对 16384 求余数，这样每个 key 都会对应一个编号在 0-16383 之间的哈希槽，redis 会根据节点数量大致均等的将哈希槽映射到不同的节点</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Spring与redis-cluster整合</p>
+<ul>
+<li><p>配置applicationContext.xml</p>
+<pre><code>&lt;!-- 连接池配置 --&gt;
+&lt;bean id=&quot;jedisPoolConfig&quot; class=&quot;redis.clients.jedis.JedisPoolConfig&quot;&gt;
+    &lt;!-- 最大连接数 --&gt;
+    &lt;property name=&quot;maxTotal&quot; value=&quot;30&quot; /&gt;
+    &lt;!-- 最大空闲连接数 --&gt;
+    &lt;property name=&quot;maxIdle&quot; value=&quot;10&quot; /&gt;
+    &lt;!-- 每次释放连接的最大数目 --&gt;
+    &lt;property name=&quot;numTestsPerEvictionRun&quot; value=&quot;1024&quot; /&gt;
+    &lt;!-- 释放连接的扫描间隔（毫秒） --&gt;
+    &lt;property name=&quot;timeBetweenEvictionRunsMillis&quot; value=&quot;30000&quot; /&gt;
+    &lt;!-- 连接最小空闲时间 --&gt;
+    &lt;property name=&quot;minEvictableIdleTimeMillis&quot; value=&quot;1800000&quot; /&gt;
+    &lt;!-- 连接空闲多久后释放, 当空闲时间&gt;该值 且 空闲连接&gt;最大空闲连接数 时直接释放 --&gt;
+    &lt;property name=&quot;softMinEvictableIdleTimeMillis&quot; value=&quot;10000&quot; /&gt;
+    &lt;!-- 获取连接时的最大等待毫秒数,小于零:阻塞不确定的时间,默认-1 --&gt;
+    &lt;property name=&quot;maxWaitMillis&quot; value=&quot;1500&quot; /&gt;
+    &lt;!-- 在获取连接的时候检查有效性, 默认false --&gt;
+    &lt;property name=&quot;testOnBorrow&quot; value=&quot;true&quot; /&gt;
+    &lt;!-- 在空闲时检查有效性, 默认false --&gt;
+    &lt;property name=&quot;testWhileIdle&quot; value=&quot;true&quot; /&gt;
+    &lt;!-- 连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true --&gt;
+    &lt;property name=&quot;blockWhenExhausted&quot; value=&quot;false&quot; /&gt;
+&lt;/bean&gt;
+&lt;!-- redis集群 --&gt;
+&lt;bean id=&quot;jedisCluster&quot; class=&quot;redis.clients.jedis.JedisCluster&quot;&gt;
+    &lt;constructor-arg index=&quot;0&quot;&gt;
+        &lt;set&gt;
+            &lt;bean class=&quot;redis.clients.jedis.HostAndPort&quot;&gt;
+                &lt;constructor-arg index=&quot;0&quot; value=&quot;192.168.101.3&quot;&gt;&lt;/constructor-arg&gt;
+                &lt;constructor-arg index=&quot;1&quot; value=&quot;7001&quot;&gt;&lt;/constructor-arg&gt;
+            &lt;/bean&gt;
+            &lt;bean class=&quot;redis.clients.jedis.HostAndPort&quot;&gt;
+                &lt;constructor-arg index=&quot;0&quot; value=&quot;192.168.101.3&quot;&gt;&lt;/constructor-arg&gt;
+                &lt;constructor-arg index=&quot;1&quot; value=&quot;7002&quot;&gt;&lt;/constructor-arg&gt;
+            &lt;/bean&gt;
+            &lt;bean class=&quot;redis.clients.jedis.HostAndPort&quot;&gt;
+                &lt;constructor-arg index=&quot;0&quot; value=&quot;192.168.101.3&quot;&gt;&lt;/constructor-arg&gt;
+                &lt;constructor-arg index=&quot;1&quot; value=&quot;7003&quot;&gt;&lt;/constructor-arg&gt;
+            &lt;/bean&gt;
+            &lt;bean class=&quot;redis.clients.jedis.HostAndPort&quot;&gt;
+                &lt;constructor-arg index=&quot;0&quot; value=&quot;192.168.101.3&quot;&gt;&lt;/constructor-arg&gt;
+                &lt;constructor-arg index=&quot;1&quot; value=&quot;7004&quot;&gt;&lt;/constructor-arg&gt;
+            &lt;/bean&gt;
+            &lt;bean class=&quot;redis.clients.jedis.HostAndPort&quot;&gt;
+                &lt;constructor-arg index=&quot;0&quot; value=&quot;192.168.101.3&quot;&gt;&lt;/constructor-arg&gt;
+                &lt;constructor-arg index=&quot;1&quot; value=&quot;7005&quot;&gt;&lt;/constructor-arg&gt;
+            &lt;/bean&gt;
+            &lt;bean class=&quot;redis.clients.jedis.HostAndPort&quot;&gt;
+                &lt;constructor-arg index=&quot;0&quot; value=&quot;192.168.101.3&quot;&gt;&lt;/constructor-arg&gt;
+                &lt;constructor-arg index=&quot;1&quot; value=&quot;7006&quot;&gt;&lt;/constructor-arg&gt;
+            &lt;/bean&gt;
+        &lt;/set&gt;
+    &lt;/constructor-arg&gt;
+    &lt;constructor-arg index=&quot;1&quot; ref=&quot;jedisPoolConfig&quot;&gt;&lt;/constructor-arg&gt;
+&lt;/bean&gt;
+</code></pre></li>
+<li><p>测试</p>
+<pre><code>private ApplicationContext applicationContext;
+@Before
+public void init() {
+    applicationContext = new ClassPathXmlApplicationContext(
+            &quot;classpath:applicationContext.xml&quot;);
+}
+
+//redis集群
+@Test
+public void testJedisCluster() {
+JedisCluster jedisCluster = (JedisCluster) applicationContext
+                .getBean(&quot;jedisCluster&quot;);
+
+        jedisCluster.set(&quot;name&quot;, &quot;zhangsan&quot;);
+        String value = jedisCluster.get(&quot;name&quot;);
+        System.out.println(value);
+}
+</code></pre></li>
+<li><p>缓存同步</p>
+<p>当数据库中的内容信息发生改变后，例如首页大广告为的广告内容发生变化后，如何实现redis中的数据同步更新呢？可以在taotao-rest工程中发布一个服务，就是专门同步数据用的，其实只需要把缓存中的数据清空即可。当管理后台更新了内容信息后，需要调用此服务。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul>
+<li><p>电商网站的商品搜索</p>
+<ul>
+<li><p>解决方案：搭建Solr服务器来实现站内搜索</p>
+</li>
+<li><p>高级解决方案：使用SolrCloud（看书时看到）<br>SolrCloud需要Solr基于Zookeeper部署，Zookeeper是一个集群管理软件，由于SolrCloud需要由多台服务器组成，由zookeeper来进行协调管理。</p>
+<ul>
+<li><p>图例说明</p>
+<p><img src="http://olpuebn54.bkt.clouddn.com/solrCloud.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>高并发访问</p>
+<ul>
+<li>解决方案：采用Tomcat集群＋Nginx作为负载均衡服务器</li>
+</ul>
+</li>
+</ul>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/10/14/taotao-business/"
+                    data-title="淘淘电商网"
+                    data-url="https://geek-xuzi.github.iohttps://geek-xuzi.github.io/2016/10/14/taotao-business/"
+                    data-images="https://geek-xuzi.github.iohttps://geek-xuzi.github.io/2016/10/14/taotao-business//img/content-bg1.jpg"
+                    data-content="
+一款类综合性的B2C平台，类似于京东商城、天猫商城。
+
+项目简介淘淘网上商城是一个综合性的B... | 徐政的博客 | Xuen&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="https://geek-xuzi.github.io/2016/12/21/car-yun-gou/" data-toggle="tooltip" data-placement="top" title="行吧云购">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="https://geek-xuzi.github.io/2016/05/14/hsahmap-principle/" data-toggle="tooltip" data-placement="top" title="深入HashMap原理">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/10/14/taotao-business/"
+                        data-title="淘淘电商网"
+                        data-url="https://geek-xuzi.github.iohttps://geek-xuzi.github.io/2016/10/14/taotao-business/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="https://geek-xuzi.github.io/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="https://geek-xuzi.github.io/tags/#后端" title="后端">后端</a>
+                        
+                          <a class="tag" href="https://geek-xuzi.github.io/tags/#Java" title="Java">Java</a>
+                        
+                          <a class="tag" href="https://geek-xuzi.github.io/tags/#Redis" title="Redis">Redis</a>
+                        
+                          <a class="tag" href="https://geek-xuzi.github.io/tags/#Nginx" title="Nginx">Nginx</a>
+                        
+                          <a class="tag" href="https://geek-xuzi.github.io/tags/#Solr" title="Solr">Solr</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'xuzibo';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/http://weibo.com/p/1005053642857490/home?from=page_100505&amp;mod=TAB&amp;is_hot=1#place">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/geek-xuzi">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Xuen&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="https:/geek-xuzi.github.io/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https:/geek-xuzi.github.io/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="https:/geek-xuzi.github.io/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://geek-xuzi.github.iohttps://geek-xuzi.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://geek-xuzi.github.iohttps://geek-xuzi.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://geek-xuzi.github.io/img/favicon.ico">
+
+    <title>
+        
+          Linux常用命令 - 徐政的博客 | Xuen&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://geek-xuzi.github.iohttps://geek-xuzi.github.io/2015/04/14/linux/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https:/geek-xuzi.github.io/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https:/geek-xuzi.github.io/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="https:/geek-xuzi.github.io/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://geek-xuzi.github.io/">Xuen&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://geek-xuzi.github.io/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="https://geek-xuzi.github.io/archives/">归档</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="https://geek-xuzi.github.io/about/">关于</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="https://geek-xuzi.github.io/tags/">标签</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://geek-xuzi.github.iohttps://geek-xuzi.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('https://geek-xuzi.github.io/img/content-bg1.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="https://geek-xuzi.github.io/tags/#Linux" title="Linux">Linux</a>
+                        
+                    </div>
+                    <h1>Linux常用命令</h1>
+                    <h2 class="subheading">详细的Linux常用命令</h2>
+                    <span class="meta">
+                        Posted by XuZheng on
+                        2015-04-14
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>详细的linux常用命令.</p>
+</blockquote>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li><p>ls 显示文件或目录</p>
+<ul>
+<li><p>-l 列出文件详细信息l(list)</p>
+</li>
+<li><p>-a 列出当前目录下所有文件及目录，包括隐藏的a(all)</p>
+</li>
+</ul>
+</li>
+<li><p>mkdir 创建目录</p>
+<ul>
+<li>-p 创建目录，若无父目录，则创建p(parent)</li>
+</ul>
+</li>
+<li><p>cd 切换目录</p>
+</li>
+<li><p>touch 创建空文件</p>
+</li>
+<li><p>echo 创建带有内容的文件。</p>
+</li>
+<li><p>cat 查看文件内容</p>
+</li>
+<li><p>cp 拷贝</p>
+</li>
+<li><p>mv 移动或重命名</p>
+</li>
+<li><p>rm 删除文件</p>
+<ul>
+<li><p>-r 递归删除，可删除子目录及文件</p>
+</li>
+<li><p>-f 强制删除</p>
+</li>
+</ul>
+</li>
+<li><p>find 在文件系统中搜索某文件</p>
+</li>
+<li><p>wc 统计文本中行数、字数、字符数</p>
+</li>
+<li><p>grep 在文本文件中查找某个字符串</p>
+</li>
+<li><p>rmdir 删除空目录</p>
+</li>
+<li><p>tree 树形结构显示目录，需要安装tree包</p>
+</li>
+<li><p>pwd  显示当前目录</p>
+</li>
+<li><p>ln 创建链接文件</p>
+</li>
+<li><p>more、less  分页显示文本文件内容</p>
+</li>
+<li><p>head、tail    显示文件头、尾内容</p>
+</li>
+<li><p>ctrl+alt+F1  命令行全屏模式</p>
+</li>
+</ul>
+<hr>
+<h2 id="系统管理命令"><a href="#系统管理命令" class="headerlink" title="系统管理命令"></a>系统管理命令</h2><ul>
+<li><p>stat              显示指定文件的详细信息，比ls更详细</p>
+</li>
+<li><p>who               显示在线登陆用户</p>
+</li>
+<li><p>whoami          显示当前操作用户</p>
+</li>
+<li><p>hostname      显示主机名</p>
+</li>
+<li><p>uname           显示系统信息</p>
+</li>
+<li><p>top                动态显示当前耗费资源最多进程信息</p>
+</li>
+<li><p>ps                  显示瞬间进程状态 ps -aux</p>
+</li>
+<li><p>du                  查看目录大小 du -h /home带有单位显示目录信息</p>
+</li>
+<li><p>df                  查看磁盘大小 df -h 带有单位显示磁盘信息</p>
+</li>
+<li><p>ifconfig          查看网络情况</p>
+</li>
+<li><p>ping                测试网络连通</p>
+</li>
+<li><p>netstat          显示网络状态信息</p>
+</li>
+<li><p>man                命令不会用了，找男人  如：man ls</p>
+</li>
+<li><p>clear              清屏</p>
+</li>
+<li><p>alias               对命令重命名 如：alias showmeit=”ps -aux” ，另外解除使用unaliax-showmeit</p>
+</li>
+<li><p>kill                 杀死进程，可以先用ps 或 top命令查看进程的id，然后再用kill命令杀死进程</p>
+</li>
+</ul>
+<hr>
+<h2 id="打包压缩相关命令"><a href="#打包压缩相关命令" class="headerlink" title="打包压缩相关命令"></a>打包压缩相关命令</h2><ul>
+<li><p>gzip：</p>
+</li>
+<li><p>bzip2：</p>
+</li>
+<li><p>tar:                打包压缩</p>
+<ul>
+<li><p>-c              归档文件</p>
+</li>
+<li><p>-x              压缩文件</p>
+</li>
+<li><p>-z              gzip压缩文件</p>
+</li>
+<li><p>-j              bzip2压缩文件</p>
+</li>
+<li><p>-v              显示压缩或解压缩过程 v(view)</p>
+</li>
+<li><p>-f              使用档名</p>
+<blockquote>
+<p>例：<br>tar -cvf /home/abc.tar /home/abc              只打包，不压缩<br>tar -zcvf /home/abc.tar.gz /home/abc        打包，并用gzip压缩<br>tar -jcvf /home/abc.tar.bz2 /home/abc      打包，并用bzip2压缩<br>当然，如果想解压缩，就直接替换上面的命令  tar -cvf  / tar -zcvf  / tar -jcvf 中的“c” 换成“x” 就可以了</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="关机-重启机器"><a href="#关机-重启机器" class="headerlink" title="关机/重启机器"></a>关机/重启机器</h2><ul>
+<li><p>shutdown</p>
+<ul>
+<li><p>-r             关机重启</p>
+</li>
+<li><p>-h             关机不重启</p>
+</li>
+<li><p>now          立刻关机</p>
+</li>
+</ul>
+</li>
+<li><p>halt               关机</p>
+</li>
+<li><p>reboot          重启</p>
+</li>
+</ul>
+<hr>
+<h2 id="vim使用"><a href="#vim使用" class="headerlink" title="vim使用"></a>vim使用</h2><p><strong>vim三种模式：命令模式、插入模式、编辑模式。使用ESC或i或：来切换模式。</strong></p>
+<ul>
+<li><p>命令模式下：</p>
+<ul>
+<li><p>:q                      退出</p>
+</li>
+<li><p>:q!                     强制退出</p>
+</li>
+<li><p>:wq                   保存并退出</p>
+</li>
+</ul>
+</li>
+<li><p>:set number     显示行号</p>
+</li>
+<li><p>:set nonumber  隐藏行号</p>
+</li>
+<li><p>/apache            在文档中查找apache 按n跳到下一个，shift+n上一个</p>
+</li>
+<li><p>yyp                   复制光标所在行，并粘贴</p>
+</li>
+<li><p>h(左移一个字符←)、j(下一行↓)、k(上一行↑)、l(右移一个字符→)</p>
+</li>
+</ul>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2015/04/14/linux/"
+                    data-title="Linux常用命令"
+                    data-url="https://geek-xuzi.github.iohttps://geek-xuzi.github.io/2015/04/14/linux/"
+                    data-images=""
+                    data-content="
+详细的linux常用命令.
+
+常用命令
+ls 显示文件或目录
+
+-l 列出文件详细信息l(l... | 徐政的博客 | Xuen&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="https://geek-xuzi.github.io/2016/05/14/hsahmap-principle/" data-toggle="tooltip" data-placement="top" title="深入HashMap原理">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2015/04/14/linux/"
+                        data-title="Linux常用命令"
+                        data-url="https://geek-xuzi.github.iohttps://geek-xuzi.github.io/2015/04/14/linux/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="https://geek-xuzi.github.io/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="https://geek-xuzi.github.io/tags/#Linux" title="Linux">Linux</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'xuzibo';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/http://weibo.com/p/1005053642857490/home?from=page_100505&amp;mod=TAB&amp;is_hot=1#place">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/geek-xuzi">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Xuen&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="https:/geek-xuzi.github.io/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https:/geek-xuzi.github.io/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="https:/geek-xuzi.github.io/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://geek-xuzi.github.iohttps://geek-xuzi.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://geek-xuzi.github.iohttps://geek-xuzi.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
